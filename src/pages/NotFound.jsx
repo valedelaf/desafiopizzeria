@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NotFound = () => {
   return (
@@ -7,7 +7,7 @@ const NotFound = () => {
         <h1> Esta página ya fue comida y no ha sido encontrada :'( </h1>
       <img style={{width: '400px'}} src='./src/assets/img/404.jpg'></img>
       <h3> Para volver al Inicio haz clic aquí: </h3>
-      <Link to= "/"> <button> Volver al inicio </button> </Link>
+      <NavLink to= "/"> <button> Volver al inicio </button> </NavLink>
     </div>
   )
 }

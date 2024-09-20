@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 function Profile() {
@@ -11,9 +11,9 @@ function Profile() {
 
   return (
     <>
-      <Link style={{color: 'white', backgroundColor: 'none'}} onClick={handleShow}>
+      <NavLink style={{color: 'white', backgroundColor: 'none'}} onClick={handleShow}>
         Profile
-      </Link>
+      </NavLink>
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>

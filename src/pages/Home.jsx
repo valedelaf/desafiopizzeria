@@ -1,9 +1,9 @@
 import CartPizzaCard from "../components/CartPizzaCard"
 import { useState, useEffect, useContext } from "react"
 import NavBar from "../components/Navbar"
-import { Button } from "react-bootstrap"
 import { CartContext } from "../context/CartContext"
 import Header from "../components/Header"
+import Pizza from "./Pizza"
 
 
 const Home = () => {

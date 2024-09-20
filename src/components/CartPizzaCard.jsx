@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 
-const CartPizzaCard = ({ name, price, ingredients, img, desc, onAgregar }) => {
+const CartPizzaCard = ({ name, price, ingredients, img, desc, onAgregar, id }) => {
   const [cantidad, setCantidad] = useState(0);
+  const navigate = useNavigate();
 
   const aumentarCantidad = () => {
     setCantidad(prevCantidad => prevCantidad + 1);
@@ -33,9 +35,8 @@ const CartPizzaCard = ({ name, price, ingredients, img, desc, onAgregar }) => {
         <Card.Title>
           <h3 style={{ textAlign: 'center' }}>Pizza {name}</h3>
         </Card.Title>
-        <h4>{getIngredients()}</h4>
-        <Card.Text style={{ display: 'flex', textAlign: 'center' }}>
-          {desc}
+        <Card.Text>
+         <h4> {getIngredients()} </h4>
         </Card.Text>
         <Card.Text>
           <h3 style={{ textAlign: 'center' }}>Precio: ${price}</h3>
@@ -51,9 +52,10 @@ const CartPizzaCard = ({ name, price, ingredients, img, desc, onAgregar }) => {
             readOnly
           />
           <button onClick={aumentarCantidad}>+</button>
-          <Button variant="dark" onClick={handleAgregarCarrito} style={{ marginLeft: '10px' }}>
+         <Button variant="dark" onClick={handleAgregarCarrito} style={{ marginLeft: '10px' }}>
             Añadir al 🛒
           </Button>
+          <Button variant= "dark"  onClick={() => navigate(`/pizza/${id}`)}>Ver detalle </Button>
         </div>
       </Card.Body>
     </Card>

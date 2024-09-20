@@ -28,12 +28,7 @@ const CartProvider = ({ children }) => {
             ));
         }
     }
-      /*const eliminarPizza = (id) => {
-        setCarrito(prevCarrito => 
-            prevCarrito.filter(item => item.id !== id)
-            
-        );
-    };*/
+
 
 return (
 <CartContext.Provider value={{carrito, setCarrito, getTotal, agregarPizza, eliminarPizza }}>
