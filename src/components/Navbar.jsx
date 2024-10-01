@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import Profile from '../pages/Profile';
 import { CartContext } from '../context/CartContext';
 import { UserContext } from '../context/UserContext';
-import Logout from '../pages/Logout';
+
 
 const NavBar = () => {
     const { user } = useContext(UserContext)
@@ -35,20 +35,9 @@ const NavBar = () => {
             <NavLink to= "/register" style={{color: 'white'}}>🔓Regístrate</NavLink>
             </>
           )}
-           <NavLink to= "/cart" style={{color: 'white', marginLeft: '500px', marginBottom: '5px'}} > Mi Carrito 🛒<br></br>Total: ${getTotal()}
+           <NavLink to= "/cart" style={{color: 'white', marginLeft: '500px', marginBottom: '5px'}} > Ver Mi Carrito 🛒<br></br>Total: ${getTotal()}
             </NavLink>
           </Nav>
-          { user ? (
-            <>
-          <Nav>
-            <NavLink style={{color: 'white'}}><Button style={{borderColor: 'white', backgroundColor: '#a52a2a', fontWeight: 'bold', fontSize: '20px'}}> 💲 Pagar</Button> </NavLink>
-          </Nav>
-          </>
-          )
-          : (
-            ''
-          )
-}
         </Navbar.Collapse>
       </Container>
     </Navbar>

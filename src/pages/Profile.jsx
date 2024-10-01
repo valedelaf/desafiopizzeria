@@ -1,13 +1,32 @@
-import { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { useEffect, useState } from "react";
+import { UserContext } from '../context/UserContext';
+import { useContext } from 'react';
+
+
 
 function Profile() {
+  const { user, setUser, logout } = useContext(UserContext); 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+    fetch("http://localhost:5000/api/auth/me", {
+    headers: {
+    Authorization: `Bearer ${token}`,
+    },
+    })
+    .then((response) => response.json())
+    .then((data) => setUser(data));
+    }
+    }, []); 
+
 
   return (
     <>
@@ -20,8 +39,13 @@ function Profile() {
           <Offcanvas.Title>Sesión de usuario</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          ¡Bienvenido valentina@pizzas.cl !
-         <hr></hr> <Button> Cerrar Sesión </Button>
+          {user ? (
+          <p>Bienvenido {user.email} </p>)
+          : (
+         <p>Por favor haz Login para acceder a tu cuenta.</p>
+)}
+        
+         <hr></hr> <Button onClick={()=> logout()}> Cerrar Sesión </Button>
         </Offcanvas.Body>
       </Offcanvas>
     </>

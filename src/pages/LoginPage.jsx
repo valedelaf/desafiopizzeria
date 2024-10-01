@@ -1,36 +1,48 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+
 
 const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { handleLogin, email, password, setPassword, setEmail } = useContext(UserContext); 
+    const [error, setError] = useState("");
 
-    const validarFormulario = (event) => {
-        if (email === "" || password === "") {
-            alert('No ha completado todos los campos');
-            return(false);
-        }
-    
-        if (password.length < 6) {
-            alert('La contraseña debe tener más de 6 caracteres');
-            return(false);
-        } 
-    
-        alert('Datos enviados')
-        return(true);
+    const validarLogin = (e)=>{
+      e.preventDefault();
+      
+      if(email === "" || password === ""){
+        setError("Debe ingresar todos los datos");
+        return
     }
 
+    setError("");
+      handleLogin(email, password)
+      setEmail("");
+      setPassword("");
+      
+  }
+
     return (
-    <div style={{width: '100%', height: '70vh', marginLeft: '100px', marginTop: '200px'}}>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '70vh', marginLeft: '100px', marginTop: '200px'}}>
     <h2> Login </h2>
     <p> Ingresa tu email y contraseña para ingresar a tu cuenta </p>
 
-    <form>
-    <p> Email: </p> <input type='email' onChange={(event) => setEmail(event.target.value)}/>
-    <p> Contraseña: </p> <input type='password' onChange={(event) => setPassword(event.target.value)}/>
-    <br></br>
-    <Button type='button' style={{marginTop: '20px'}} onClick={(event) => validarFormulario(event)}> Validar Datos </Button>
-    </form>
+    <Form onSubmit={validarLogin}>
+<input
+type="email"
+placeholder="Email"
+value={email}
+onChange={(e) => setEmail(e.target.value)}
+/>
+<input
+type="password"
+placeholder="Password"
+value={password}
+onChange={(e) => setPassword(e.target.value)}
+/>
+<Button type="submit">Login</Button>
+</Form>
 
     </div>
   )
